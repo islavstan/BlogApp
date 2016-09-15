@@ -1,58 +1,27 @@
 {
   "project_info": {
-    "project_number": "280783258547",
-    "firebase_url": "https://fireapp-e5cb1.firebaseio.com",
-    "project_id": "fireapp-e5cb1",
-    "storage_bucket": "fireapp-e5cb1.appspot.com"
+    "project_number": "64275525597",
+    "firebase_url": "https://fireblog-e69b3.firebaseio.com",
+    "project_id": "fireblog-e69b3",
+    "storage_bucket": "fireblog-e69b3.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:280783258547:android:227b1c0138b8e1f8",
-        "android_client_info": {
-          "package_name": "com.islavdroid.fireapp"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "280783258547-t33jc07adkk135damiugnsi0ln2p7m53.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyBxAUHXpddiPrMpPD0T1BQlMjwOD8kjGjA"
-        }
-      ],
-      "services": {
-        "analytics_service": {
-          "status": 1
-        },
-        "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
-        },
-        "ads_service": {
-          "status": 2
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:280783258547:android:160b3aac031ea56b",
+        "mobilesdk_app_id": "1:64275525597:android:160b3aac031ea56b",
         "android_client_info": {
           "package_name": "com.islavdroid.blogapp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "280783258547-t33jc07adkk135damiugnsi0ln2p7m53.apps.googleusercontent.com",
+          "client_id": "64275525597-5e4a8qn12vabt8jc2ub6p0du114m0cca.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBxAUHXpddiPrMpPD0T1BQlMjwOD8kjGjA"
+          "current_key": "AIzaSyD_i6rze_6tjZkLyLhX1y4wD0_0aphlMRg"
         }
       ],
       "services": {
