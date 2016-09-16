@@ -94,9 +94,11 @@ public class PostActivity extends AppCompatActivity {
             mProgress.show();
 //в Storage создаём папку Blog_Images для изображений
             StorageReference filepath = mStorage.child("Blog_Images").child(actualImage.getAbsolutePath());
+
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             bm.compress(Bitmap.CompressFormat.JPEG, 100, baos);
             byte[] b = baos.toByteArray();
+
             filepath.putBytes(b).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
@@ -128,7 +130,7 @@ public class PostActivity extends AppCompatActivity {
 
                 actualImage = FileUtil.from(this, data.getData());
                 BitmapFactory.Options options = new BitmapFactory.Options();
-                options.inSampleSize = 2;
+                options.inSampleSize = 8;
                 bm=BitmapFactory.decodeFile(actualImage.getAbsolutePath(),options);
                 mselectImage.setImageBitmap(bm);
             } catch (IOException e) {
