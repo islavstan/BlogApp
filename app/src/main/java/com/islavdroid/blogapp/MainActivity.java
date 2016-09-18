@@ -12,17 +12,23 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 public class MainActivity extends AppCompatActivity {
 private RecyclerView rvBlogList;
     private DatabaseReference mDataBase;
     private FirebaseAuth mAuth;
+    private DatabaseReference mDatabaseUsers;
+    //с помощью AuthStateListener можно отслеживать когда пользователь входит и выходит
     private FirebaseAuth.AuthStateListener mAuthListener;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +41,7 @@ private RecyclerView rvBlogList;
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 if(firebaseAuth.getCurrentUser()==null){
-                  Intent loginIntent =new Intent(MainActivity.this,RegisterActivity.class);
+                  Intent loginIntent =new Intent(MainActivity.this,LogInActivity.class);
                     loginIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(loginIntent);
                 }
@@ -46,6 +52,9 @@ private RecyclerView rvBlogList;
 
 
         mDataBase= FirebaseDatabase.getInstance().getReference().child("Blog");
+        mDatabaseUsers=FirebaseDatabase.getInstance().getReference().child("Users");
+        mDatabaseUsers.keepSynced(true);
+        mDataBase.keepSynced(true);
         rvBlogList=(RecyclerView)findViewById(R.id.blog_list);
         //rvBlogList.setHasFixedSize(true);
         rvBlogList.setLayoutManager(new LinearLayoutManager(this));
@@ -53,6 +62,8 @@ private RecyclerView rvBlogList;
     @Override
     protected void onStart() {
         super.onStart();
+
+        checkUserExist();
         mAuth.addAuthStateListener(mAuthListener);
 
         FirebaseRecyclerAdapter<Blog,BlogViewHolder>firebaseRecyclerAdapter=new
@@ -68,6 +79,28 @@ private RecyclerView rvBlogList;
                 };
         rvBlogList.setAdapter(firebaseRecyclerAdapter);
     }
+
+    private void checkUserExist() {
+        if(mAuth.getCurrentUser() != null){
+        final String user_id =mAuth.getCurrentUser().getUid();
+        mDatabaseUsers.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                if(dataSnapshot.hasChild(user_id)){
+                    Intent mainIntent =new Intent(MainActivity.this,SetupActivity.class);
+                    mainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(mainIntent);
+
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+    }}
 
 
     public static class BlogViewHolder extends RecyclerView.ViewHolder{

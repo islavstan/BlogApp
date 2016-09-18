@@ -31,6 +31,7 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
        mAuth=FirebaseAuth.getInstance();
+        //Получаем точку входа для доступа к базе и место для чтения или записи
         mDatabase= FirebaseDatabase.getInstance().getReference().child("Users");
         mProgress=new ProgressDialog(this);
 
@@ -53,19 +54,24 @@ public class RegisterActivity extends AppCompatActivity {
        final String name =mNameField.getText().toString().trim();
         String email = mEmailField.getText().toString().trim();
         String password =mPasswordField.getText().toString().trim();
+        //проверяем поля на пустоту
         if(!TextUtils.isEmpty(name)&&!TextUtils.isEmpty(email)&&!TextUtils.isEmpty(password)){
            mProgress.setMessage("Signing up...");
             mProgress.show();
+            //создаём нового пользователя с помощью мыла и пароля
             mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful()){
-
+                       //берём id текущего пользователя
                         String user_id=mAuth.getCurrentUser().getUid();
+                        //записываем ему эти данные
                      DatabaseReference current_user_db=   mDatabase.child(user_id);
                         current_user_db.child("name").setValue(name);
                         current_user_db.child("image").setValue("default");
+
                         mProgress.dismiss();
+
                         Intent mainIntent = new Intent(RegisterActivity.this,MainActivity.class);
                        /* Если же нам просто надо перейти из RegisterActivity к MainActivity, как если бы мы перешли назад
                         с помощью кнопки Back, то мы можем использовать флаги Intent.FLAG_ACTIVITY_CLEAR_TOP*/
