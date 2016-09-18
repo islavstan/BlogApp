@@ -58,12 +58,13 @@ private RecyclerView rvBlogList;
         rvBlogList=(RecyclerView)findViewById(R.id.blog_list);
         //rvBlogList.setHasFixedSize(true);
         rvBlogList.setLayoutManager(new LinearLayoutManager(this));
+        checkUserExist();
     }
     @Override
     protected void onStart() {
         super.onStart();
 
-        checkUserExist();
+
         mAuth.addAuthStateListener(mAuthListener);
 
         FirebaseRecyclerAdapter<Blog,BlogViewHolder>firebaseRecyclerAdapter=new
@@ -86,7 +87,7 @@ private RecyclerView rvBlogList;
         mDatabaseUsers.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if(dataSnapshot.hasChild(user_id)){
+                if(!dataSnapshot.hasChild(user_id)){
                     Intent mainIntent =new Intent(MainActivity.this,SetupActivity.class);
                     mainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(mainIntent);

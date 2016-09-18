@@ -35,6 +35,15 @@
         android:id="@+id/loginBtn"
         android:layout_below="@+id/loginPasswordField"
         android:layout_centerHorizontal="true" />
+    <com.google.android.gms.common.SignInButton
+        android:layout_marginTop="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+       android:id="@+id/gbtn"
+        android:layout_below="@+id/loginBtn"
+        android:layout_centerHorizontal="true">
+
+    </com.google.android.gms.common.SignInButton>
 
     <Button
         android:layout_width="match_parent"
