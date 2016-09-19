@@ -32,6 +32,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class LogInActivity extends AppCompatActivity {
+
+
     private EditText mLoginEmailField,mPasswordField;
     private Button mLoginBtn,mNewAccountBtb;
    private FirebaseAuth mAuth;

@@ -21,6 +21,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
 public class MainActivity extends AppCompatActivity {
@@ -118,9 +120,21 @@ private RecyclerView rvBlogList;
             TextView post_desc=(TextView)mView.findViewById(R.id.post_descr);
             post_desc.setText(desc);
         }
-        public void setImage(Context con, String image){
-            ImageView post_image = (ImageView)mView.findViewById(R.id.post_image);
-            Picasso.with(con).load(image).into(post_image);
+        public void setImage(final Context con,final String image){
+            final ImageView post_image = (ImageView)mView.findViewById(R.id.post_image);
+           // Picasso.with(con).load(image).into(post_image);
+            Picasso.with(con).load(image).networkPolicy(NetworkPolicy.OFFLINE).into(post_image, new Callback() {
+                @Override
+                public void onSuccess() {
+
+                }
+
+                @Override
+                public void onError() {
+                    Picasso.with(con).load(image).into(post_image);
+                }
+            });
+
         }
 
 
