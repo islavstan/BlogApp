@@ -9,15 +9,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.islavdroid.blogapp.SetupActivity">
 
-    <ImageButton
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:id="@+id/profileImageBtn"
-        android:src="@mipmap/defaultavatar"
-        android:scaleType="centerCrop"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -35,5 +26,15 @@
         android:text="finish setup"
         android:id="@+id/setupSubmitBtn"
         android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:elevation="0dp" />
+
+    <ImageButton
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:id="@+id/profileImageBtn"
+        android:src="@mipmap/defaultavatar"
+        android:scaleType="centerCrop"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 </RelativeLayout>

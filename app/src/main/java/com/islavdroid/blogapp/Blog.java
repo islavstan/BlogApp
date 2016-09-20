@@ -2,16 +2,29 @@ package com.islavdroid.blogapp;
 
 
 public class Blog {
-    private String tittle, desc, image;
+    private String tittle;
+    private String desc;
+    private String image;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    private String username;
 
     public Blog() {
 
     }
 
-    public Blog(String tittle, String desc, String image) {
+    public Blog(String tittle, String desc, String image,String username) {
         this.tittle = tittle;
         this.desc = desc;
         this.image = image;
+        this.username =username;
     }
 
     public String getTittle() {

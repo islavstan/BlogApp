@@ -78,6 +78,7 @@ private RecyclerView rvBlogList;
                         viewHolder.setTitle(model.getTittle());
                         viewHolder.setDesc(model.getDesc());
                         viewHolder.setImage(getApplicationContext(),model.getImage());
+                        viewHolder.setUserName(model.getUsername());
                     }
                 };
         rvBlogList.setAdapter(firebaseRecyclerAdapter);
@@ -120,6 +121,18 @@ private RecyclerView rvBlogList;
             TextView post_desc=(TextView)mView.findViewById(R.id.post_descr);
             post_desc.setText(desc);
         }
+
+        public void setUserName(String username){
+            TextView post_username=(TextView)mView.findViewById(R.id.post_username);
+            post_username.setText(username);
+
+        }
+
+
+
+
+
+
         public void setImage(final Context con,final String image){
             final ImageView post_image = (ImageView)mView.findViewById(R.id.post_image);
            // Picasso.with(con).load(image).into(post_image);
